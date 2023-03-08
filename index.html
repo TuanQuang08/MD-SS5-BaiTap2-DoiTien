@@ -21,48 +21,50 @@
     </style>
 </head>
 <body>
-<form>
-    <table>
+<table>
         <tr>
             <th>Amount</th>
             <th>From Currency</th>
             <th>To Currency</th>
         </tr>
         <tr>
-            <th><input type="number" id="amount" name="amount"></th>
+            <th><input type="number" id="amount" name="amount" oninput="Convert();"></th>
             <th>
-                <select id="fromCurrency">
-                    <option>VietNam</option>
-                    <option>USA</option>
+                <select id="fromCurrency" onchange="Convert();">
+                    <option value="VND">VietNam</option>
+                    <option value="USD">USA</option>
                 </select>
             </th>
             <th>
-                <select id="toCurrency">
-                    <option>VietNam</option>
-                    <option>USA</option>
+                <select id="toCurrency" onchange="Convert();">
+                    <option value="VND">VietNam</option>
+                    <option value="USD">USA</option>
                 </select>
             </th>
             <th>
-                <button type="button" onclick="Convert();">Convert</button>
+                <button type="button" onchange="Convert();">Convert</button>
             </th>
         </tr>
     </table>
     <p style="color: blue">Result: <span id="result"></span></p>
-</form>
+
 <script>
     function Convert() {
         let convert;
         let inputAmount = document.getElementById("amount").value;
         let amount = parseFloat(inputAmount);
         let fromCurrency = document.getElementById("fromCurrency").value;
-
         let toCurrency = document.getElementById("toCurrency").value;
-        if (fromCurrency === 'VietNam' && toCurrency === 'USA'){
+    console.log(fromCurrency);
+    console.log(toCurrency);
+        if (fromCurrency === 'VND' && toCurrency === 'USD'){
             convert = amount * 0.000042;
             document.getElementById('result').innerHTML = convert + ' VND';
-        }else if(fromCurrency === 'USA' && toCurrency === 'VietNam'){
+        }else if(fromCurrency === 'USD' && toCurrency === 'VND'){
             convert = amount*23.795;
             document.getElementById('result').innerHTML = convert + ' USD';
+        }else {
+            alert('Khong doi cung loai');
         }
     }
 </script>
